@@ -1,0 +1,55 @@
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.create {
+  border-color: transparent;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  width: 20%;
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  width: 100%;
+  border: none;
+  background-color: #f0e2ff91;
+  transition: all 0.4s;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 25px 10px #f0e2ff91;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+
+  .name {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .phone {
+    font-size: 15px;
+  }
+}
