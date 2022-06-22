@@ -21,6 +21,8 @@ const PatientModal: React.FC<Props> = ({ children, update, patient }) => {
   const [info, setInfo] = useState<Partial<Patient>>(patient ? { ...patient } : {});
 
   const onToggle = () => {
+    !visible && form.resetFields();
+
     setVisible(!visible);
   };
 
@@ -61,7 +63,7 @@ const PatientModal: React.FC<Props> = ({ children, update, patient }) => {
           validateTrigger={['onChange', 'onBlur', 'onSubmit']}
           form={form}
           onFinish={submit}
-          initialValues={{ ...info }}
+          initialValues={patient ? { ...info } : {}}
         >
           <Item name="firstName" label="First Name" rules={[
             {

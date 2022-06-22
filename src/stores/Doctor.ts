@@ -2,7 +2,7 @@ import { makeAutoObservable, observable, action } from 'mobx';
 
 import { api } from 'config';
 
-import { CreateDoctor, Doctor } from 'models';
+import { CreateDoctor, Doctor, SpecialistType } from 'models';
 
 class DoctorStore {
   constructor() {
@@ -31,6 +31,18 @@ class DoctorStore {
 
   @action async deleteDoctor(id: number) {
     await api.delete(`/doctors?doctorId=${id}`);
+  }
+
+  @action async getDoctorsByDate(date: moment.Moment) {
+    const { data } = await api.get(`doctors/free/at?date=${date.format('YYYY-MM-DD H:mm')}`);
+
+    return data;
+  }
+
+  @action async getDoctorsByDateAndType(date: moment.Moment, type: SpecialistType) {
+    const { data } = await api.get(`doctors/free/at/specialist?date=${date.format('YYYY-MM-DD H:mm')}&specialistType=${type}`);
+
+    return data;
   }
 }
 

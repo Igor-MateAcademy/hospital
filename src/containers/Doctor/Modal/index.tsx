@@ -63,7 +63,7 @@ const DoctorModal: React.FC<Props> = ({ children, update, doctor }) => {
           validateTrigger={['onBlur', 'onChange', 'onSubmit']}
           onFinish={submit}
           form={form}
-          initialValues={{ ...info }}
+          initialValues={doctor ? { ...info } : {}}
         >
           <Item name="firstName" label="First Name" rules={[{ required: true, message: 'This field is required' }]}>
             <Input placeholder="Mike" onChange={e => {

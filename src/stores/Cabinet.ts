@@ -2,7 +2,7 @@ import { makeAutoObservable, observable, action } from 'mobx';
 
 import { api } from 'config';
 
-import { ICabinet } from 'models';
+import { ICabinet, CabinetType } from 'models';
 
 class CabinetStore {
   constructor() {
@@ -31,6 +31,18 @@ class CabinetStore {
 
   @action async deleteCabinet(id: number) {
     await api.delete(`cabinets?cabinetId=${id}`);
+  }
+
+  @action async getCabinetsByDate(date: moment.Moment) {
+    const { data } = await api.get(`cabinets/free/at?date=${date.format('YYYY-MM-DD H:mm')}`);
+
+    return data;
+  }
+
+  @action async getCabinetsByDateAndType(date: moment.Moment, type: CabinetType) {
+    const { data } = await api.get(`cabinets/free/at/cabinet?date=${date.format('YYYY-MM-DD H:mm')}&cabinetType=${type}`);
+
+    return data;
   }
 }
 

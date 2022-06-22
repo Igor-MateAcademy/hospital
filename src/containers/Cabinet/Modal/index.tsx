@@ -19,7 +19,6 @@ const Cabinet: React.FC<Props> = ({ children, update, cabinet }) => {
 
   const [open, setOpen] = useState<boolean>(false);
   const [info, setInfo] = useState<Partial<ICabinet>>(cabinet ? cabinet : {});
-  console.log(cabinet);
 
   const onToggle = () => {
     !open && form.resetFields();
@@ -64,7 +63,7 @@ const Cabinet: React.FC<Props> = ({ children, update, cabinet }) => {
           validateTrigger={['onBlur', 'onChange', 'onSubmit']}
           onFinish={submit}
           form={form}
-          initialValues={{ ...info }}
+          initialValues={cabinet ? { ...info } : {}}
         >
           <Item name="number" label="Number" rules={[{ required: true, message: 'This field is required' }, { pattern: /^[0-9]+$/g, message: 'Incorrect format' }]}>
             <Input addonBefore={'№'} onChange={e => {
